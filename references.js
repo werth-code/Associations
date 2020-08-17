@@ -7,27 +7,13 @@ mongoose.connect('mongodb://localhost:27017/blogDemo_2', {
     useUnifiedTopology: true
 }).then(() => console.log('Connected to DB!')).catch(error => console.log(error.message));
 
-//POST
+const Post = require("./models/post")
+const User = require("./models/user")
+
 const postSchema = new mongoose.Schema({
     title: String,
     content: String
 })
-const Post = mongoose.model("Post", postSchema)
-
-//USER
-const userSchema = new mongoose.Schema({
-    email: String,
-    name: String,
-    posts: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Post"
-        }
-    ]
-})
-
-const User = mongoose.model("User", userSchema)
-
 
 // User.create({
 //     email: "bob@gmail.com",
@@ -35,7 +21,7 @@ const User = mongoose.model("User", userSchema)
 // })
 
 // Post.create({
-//     title: "FUUUUUUUUUUUUUUUUU",
+//     title: "ANOTHER THINGAMABOB",
 //     content: "regertwhrtwjyj"
 // }, (err, post) => {
 //     User.findOne({ email: "bob@gmail.com" }, (err, foundUser) => {
@@ -54,7 +40,7 @@ const User = mongoose.model("User", userSchema)
 //     })
 // })
 
-User.findOne({email: "bob@gmail.com"}).populate("posts").exec( (err, user) => {
-    if(err) console.log(err)
-    else console.log(user)
-})
+// User.findOne({email: "bob@gmail.com"}).populate("posts").exec( (err, user) => {
+//     if(err) console.log(err)
+//     else console.log
+// })
